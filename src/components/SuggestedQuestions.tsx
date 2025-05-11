@@ -2,18 +2,12 @@
 import { Button } from "@/components/ui/button";
 
 interface SuggestedQuestionsProps {
+  questions: string[];
   onSelectQuestion: (question: string) => void;
   isProcessing: boolean;
 }
 
-const SuggestedQuestions = ({ onSelectQuestion, isProcessing }: SuggestedQuestionsProps) => {
-  const questions = [
-    "How can I find my purpose in life?",
-    "How do I deal with stress and anxiety?",
-    "What is the right way to make decisions?",
-    "How can I balance worldly duties and spiritual growth?"
-  ];
-
+const SuggestedQuestions = ({ questions, onSelectQuestion, isProcessing }: SuggestedQuestionsProps) => {
   return (
     <div className="w-full">
       <h3 className="text-sm font-medium text-muted-foreground mb-3 text-center">

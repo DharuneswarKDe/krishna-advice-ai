@@ -1,23 +1,60 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MessageBubble from "./MessageBubble";
 import ChatInput from "./ChatInput";
 import SuggestedQuestions from "./SuggestedQuestions";
 import { Message } from "@/types/message";
-import { generateResponse } from "@/lib/gitaDatabase";
+import { sendChatMessage, checkBackendStatus } from "@/lib/api";
+import { useGeneration } from "@/context/GenerationContext";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 const ChatContainer = () => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome-message",
-      content: "Namaste 🙏 I am Krishna AI, ready to share wisdom from the Bhagavad Gita. How may I assist you on your path today?",
-      role: "assistant",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isBackendAvailable, setIsBackendAvailable] = useState(true);
+  const { generation } = useGeneration();
+  const { toast } = useToast();
+  
+  // Welcome messages based on generation
+  const welcomeMessages = {
+    boomer: "Namaste 🙏 I am Krishna AI, ready to share the timeless wisdom of the Bhagavad Gita. How may I guide you on your spiritual journey today?",
+    millennial: "Hey there 👋 I'm Krishna AI, here to help you find balance in the chaos. What's on your mind today?",
+    genz: "Sup ✨ I'm Krishna AI, bringing you ancient wisdom with modern vibes. What's bothering you rn?",
+    default: "Namaste 🙏 I am Krishna AI, ready to share wisdom from the Bhagavad Gita. How may I assist you on your path today?"
+  };
+
+  // Initialize welcome message based on generation
+  useEffect(() => {
+    const welcomeMessage = generation 
+      ? welcomeMessages[generation] 
+      : welcomeMessages.default;
+      
+    setMessages([
+      {
+        id: "welcome-message",
+        content: welcomeMessage,
+        role: "assistant",
+        timestamp: new Date(),
+      },
+    ]);
+    
+    // Check backend connectivity
+    const checkBackend = async () => {
+      const status = await checkBackendStatus();
+      setIsBackendAvailable(status);
+      if (!status) {
+        toast({
+          title: "Backend Connection Issue",
+          description: "Using local responses as fallback. Reconnecting...",
+          variant: "destructive",
+        });
+      }
+    };
+    
+    checkBackend();
+  }, [generation, toast]);
 
   const addMessage = (content: string, role: "user" | "assistant") => {
     const newMessage: Message = {
@@ -36,12 +73,65 @@ const ChatContainer = () => {
     setIsProcessing(true);
     addMessage(userMessage, "user");
 
-    // Simulate thinking time for a more natural experience
-    setTimeout(() => {
-      const response = generateResponse(userMessage);
-      addMessage(response, "assistant");
+    try {
+      if (isBackendAvailable) {
+        // Use the backend API
+        const response = await sendChatMessage(userMessage, generation);
+        addMessage(response.content, "assistant");
+      } else {
+        // Fallback to local response generation
+        import("@/lib/gitaDatabase").then(({ generateResponse }) => {
+          setTimeout(() => {
+            const response = generateResponse(userMessage);
+            addMessage(response, "assistant");
+            setIsProcessing(false);
+          }, 1500);
+        });
+      }
+    } catch (error) {
+      console.error("Error processing message:", error);
+      addMessage("I'm having trouble connecting to my wisdom source. Please try again later.", "assistant");
+      toast({
+        title: "Connection Error",
+        description: "Could not reach the knowledge source. Falling back to local responses.",
+        variant: "destructive",
+      });
+    } finally {
       setIsProcessing(false);
-    }, 1500);
+    }
+  };
+
+  // Get suggested questions based on generation
+  const getSuggestedQuestions = () => {
+    if (generation === "boomer") {
+      return [
+        "How can I find deeper meaning in retirement?",
+        "What does the Gita say about legacy and family?",
+        "How do I maintain inner peace during life changes?",
+        "What is the purpose of spiritual practice in later years?"
+      ];
+    } else if (generation === "millennial") {
+      return [
+        "How can I balance ambition with inner peace?",
+        "What does the Gita say about career purpose?",
+        "How do I manage work stress mindfully?",
+        "How can I build authentic relationships?"
+      ];
+    } else if (generation === "genz") {
+      return [
+        "How do I find my authentic self?",
+        "What does the Gita say about social justice?",
+        "How do I deal with constant digital overwhelm?",
+        "How can I make meaningful change in the world?"
+      ];
+    } else {
+      return [
+        "How can I find my purpose in life?",
+        "How do I deal with stress and anxiety?",
+        "What is the right way to make decisions?",
+        "How can I balance worldly duties and spiritual growth?"
+      ];
+    }
   };
 
   return (
@@ -75,9 +165,17 @@ const ChatContainer = () => {
                 <path d="M270.3,36c-10.1,0.9-20,3.9-28.3,9.7c-11.8,8.2-20,21-20,36.3c0,8.5,2.5,16.4,6.8,23.1c-3.8,0.7-7.4,2-10.8,3.9c-9.2,5.1-15.4,14.9-15.4,26c0,5.9,1.8,11.4,4.8,16c-14.8,8.2-24.8,23.9-24.8,42c0,7.5,1.7,14.6,4.8,21c-9.2,8-15,19.8-15,33c0,8.1,2.2,15.7,6,22.2c-3.1,6.1-4.8,13-4.8,20c0,9.7,3,18.6,8.1,26c-8.1,9-13,21-13,34c0,10,2.9,19.3,7.9,27.2c-5,7.9-7.9,17.2-7.9,27.2c0,28.2,23,51.2,51.2,51.2h52c28.2,0,51.2-23,51.2-51.2c0-10-2.9-19.3-7.9-27.2c5-7.9,7.9-17.2,7.9-27.2c0-13-4.9-25-13-34c5.1-7.4,8.1-16.3,8.1-26c0-7-1.7-13.9-4.8-20c3.8-6.5,6-14.1,6-22.2c0-13.2-5.8-25-15-33c3.1-6.4,4.8-13.5,4.8-21c0-18.1-10-33.8-24.8-42c3-4.6,4.8-10.1,4.8-16c0-11.1-6.2-20.9-15.4-26c-3.4-1.9-7-3.2-10.8-3.9c4.3-6.7,6.8-14.6,6.8-23.1c0-23.6-19.2-42.8-42.8-42.8c-0.3,0-0.6,0-0.9,0z"/>
               </svg>
             </div>
-            <h2 className="text-xl font-semibold mb-2">Welcome to Krishna AI</h2>
+            <h2 className="text-xl font-semibold mb-2">
+              {generation === "boomer" ? "Wisdom Awaits You" :
+               generation === "millennial" ? "Find Your Balance" :
+               generation === "genz" ? "Get Real Talk" :
+               "Welcome to Krishna AI"}
+            </h2>
             <p className="text-muted-foreground mb-6">
-              Ask any question and receive wisdom from the Bhagavad Gita's timeless teachings
+              {generation === "boomer" ? "Ask any question and receive timeless wisdom to guide your spiritual journey" :
+               generation === "millennial" ? "Ask any question and discover how ancient wisdom applies to your modern hustle" :
+               generation === "genz" ? "Ask any question and get authentic insights that actually make sense for your life" :
+               "Ask any question and receive wisdom from the Bhagavad Gita's timeless teachings"}
             </p>
           </div>
         ) : (
@@ -91,13 +189,18 @@ const ChatContainer = () => {
       <div className="mt-auto pt-4 pb-6 flex flex-col gap-6 px-4">
         {messages.length <= 2 && (
           <SuggestedQuestions 
+            questions={getSuggestedQuestions()}
             onSelectQuestion={processMessage}
             isProcessing={isProcessing}
           />
         )}
         <ChatInput 
           onSendMessage={processMessage} 
-          isProcessing={isProcessing} 
+          isProcessing={isProcessing}
+          placeholder={generation === "boomer" ? "Ask for wisdom from the Bhagavad Gita..." :
+                      generation === "millennial" ? "Ask how ancient wisdom applies to your life..." :
+                      generation === "genz" ? "What's on your mind? Ask anything..." :
+                      "Ask for wisdom from the Bhagavad Gita..."}
         />
       </div>
     </div>

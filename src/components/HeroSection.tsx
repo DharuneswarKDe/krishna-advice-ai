@@ -2,24 +2,59 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useGeneration } from "@/context/GenerationContext";
 
 const HeroSection = () => {
+  const { generation } = useGeneration();
+  
+  // Dynamic content based on generation
+  const getTitle = () => {
+    switch (generation) {
+      case "boomer": return "Timeless Wisdom for Life's Later Chapters";
+      case "millennial": return "Ancient Balance for Your Modern Hustle";
+      case "genz": return "Real Talk from 5000-Year-Old Wisdom";
+      default: return "Ancient Wisdom for Modern Questions with";
+    }
+  };
+  
+  const getSubtitle = () => {
+    switch (generation) {
+      case "boomer": 
+        return "Discover deeper meaning and purpose through the timeless teachings of the Bhagavad Gita";
+      case "millennial": 
+        return "Find harmony between ambition and inner peace with guidance from the Bhagavad Gita";
+      case "genz": 
+        return "Cut through the noise and find your authentic path with no-filter wisdom from the Bhagavad Gita";
+      default:
+        return "Receive guidance from the timeless teachings of the Bhagavad Gita, personalized for your life's challenges";
+    }
+  };
+  
+  const getPrimaryButtonText = () => {
+    switch (generation) {
+      case "boomer": return "Seek Guidance";
+      case "millennial": return "Find Balance";
+      case "genz": return "Get Answers";
+      default: return "Ask Krishna";
+    }
+  };
+
   return (
     <section className="py-12 md:py-20 relative">
       <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            Ancient Wisdom for Modern Questions with <span className="gradient-text">Krishna AI</span>
+            {getTitle()} {!generation && <span className="gradient-text">Krishna AI</span>}
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8">
-            Receive guidance from the timeless teachings of the Bhagavad Gita, personalized for your life's challenges
+            {getSubtitle()}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="gap-2" asChild>
               <Link to="/chat">
-                Ask Krishna <ArrowRight className="h-4 w-4" />
+                {getPrimaryButtonText()} <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>

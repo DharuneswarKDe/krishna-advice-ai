@@ -7,9 +7,10 @@ import { Send } from "lucide-react";
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
   isProcessing: boolean;
+  placeholder?: string;
 }
 
-const ChatInput = ({ onSendMessage, isProcessing }: ChatInputProps) => {
+const ChatInput = ({ onSendMessage, isProcessing, placeholder = "Ask for wisdom from the Bhagavad Gita..." }: ChatInputProps) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,7 +25,7 @@ const ChatInput = ({ onSendMessage, isProcessing }: ChatInputProps) => {
     <form onSubmit={handleSubmit} className="flex w-full gap-2">
       <Input
         type="text"
-        placeholder="Ask for wisdom from the Bhagavad Gita..."
+        placeholder={placeholder}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         disabled={isProcessing}
