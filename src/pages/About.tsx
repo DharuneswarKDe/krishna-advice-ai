@@ -13,7 +13,7 @@ const About = () => {
       <main className="flex-1">
         <section className="py-12 md:py-20">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">About Krishna AI</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">About Thattuvam AI</h1>
             
             <div className="mb-12 text-center">
               <div className="w-20 h-20 mx-auto mb-6 text-primary">
