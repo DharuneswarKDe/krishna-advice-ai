@@ -18,9 +18,7 @@ const Index = () => {
         
         {/* Generation selector section */}
         <GenerationSelector />
-        
-        <FeatureSection />
-        
+                
         {/* CTA section with personalized message based on selected generation */}
         <section className="py-16 md:py-24 bg-secondary/5">
           <div className="container mx-auto px-4 text-center">
