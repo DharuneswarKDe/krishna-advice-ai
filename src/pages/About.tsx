@@ -34,7 +34,7 @@ const About = () => {
                   <h2 className="text-xl font-semibold mb-4">The Bhagavad Gita</h2>
                   <p className="text-muted-foreground mb-4">
                     The Bhagavad Gita, often referred to as the Gita, is a 700-verse Hindu scripture that is part of the 
-                    Indian epic Mahabharata. It is a conversation between Prince Arjuna and the divine Krishna, who serves 
+                    Indian epic Mahabharata. It is a conversation between Prince Arjuna and the divin Thattivam, who serves 
                     as his charioteer and guide.
                   </p>
                   <p className="text-muted-foreground">
@@ -47,9 +47,9 @@ const About = () => {
               
               <Card className="bg-card/75 backdrop-blur-sm border-primary/10">
                 <CardContent className="p-6">
-                  <h2 className="text-xl font-semibold mb-4">How Krishna AI Works</h2>
+                  <h2 className="text-xl font-semibold mb-4">How Thattuvam AI Works</h2>
                   <p className="text-muted-foreground mb-4">
-                    Krishna AI is designed to bridge ancient wisdom with modern questions. When you ask a question, 
+                 Thattivam AI is designed to bridge ancient wisdom with modern questions. When you ask a question, 
                     our system analyzes it to find relevant teachings from the Bhagavad Gita.
                   </p>
                   <p className="text-muted-foreground">
@@ -64,7 +64,7 @@ const About = () => {
                 <CardContent className="p-6">
                   <h2 className="text-xl font-semibold mb-4">Disclaimer</h2>
                   <p className="text-muted-foreground">
-                    Krishna AI offers interpretations of the Bhagavad Gita's wisdom but is not a replacement for 
+                 Thattivam AI offers interpretations of the Bhagavad Gita's wisdom but is not a replacement for 
                     spiritual teachers, religious guidance, or professional advice. The responses are AI-generated 
                     based on our training data and should be considered as thoughtful reflections rather than 
                     absolute spiritual truths. For deeper study, we encourage consulting authentic texts, qualified 
@@ -76,7 +76,7 @@ const About = () => {
             
             <div className="mt-12 text-center">
               <Button size="lg" asChild>
-                <Link to="/chat">Ask Krishna Now</Link>
+                <Link to="/chat">As Thattivam Now</Link>
               </Button>
             </div>
           </div>
