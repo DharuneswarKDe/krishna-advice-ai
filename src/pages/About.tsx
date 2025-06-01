@@ -76,7 +76,7 @@ const About = () => {
             
             <div className="mt-12 text-center">
               <Button size="lg" asChild>
-                <Link to="/chat">As Thattivam Now</Link>
+                <Link to="/chat">Ask Thattivam Now</Link>
               </Button>
             </div>
           </div>
