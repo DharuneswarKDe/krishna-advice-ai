@@ -72,7 +72,6 @@ const ChatContainer = () => {
     
     setIsProcessing(true);
     addMessage(userMessage, "user");
-
     try {
       if (isBackendAvailable) {
         // Use the backend API
