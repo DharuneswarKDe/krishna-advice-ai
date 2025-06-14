@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    --background: 4 9% 51%;
-    --foreground: 195 9% 93%;
+    --background: 195 9% 93%;
+    --foreground: 4 9% 51%;
 
     --card: 195 9% 93%;
     --card-foreground: 4 9% 51%;
@@ -39,61 +39,61 @@
   }
 
   .generation-genz {
-    --background: 219 57% 95%;
-    --foreground: 195 61% 22%;
-    --card: 180 6% 85%;
-    --card-foreground: 195 61% 22%;
-    --popover: 180 6% 85%;
+    --background: 58 9% 87%; /* #D5DCDE */
+    --foreground: 195 61% 22%; /* #1C5A70 */
+    --card: 58 9% 87%; /* #D5DCDE */
+    --card-foreground: 195 61% 22%; /* #1C5A70 */
+    --popover: 58 9% 87%;
     --popover-foreground: 195 61% 22%;
-    --primary: 195 61% 22%;
-    --primary-foreground: 219 57% 95%;
-    --secondary: 149 13% 57%;
+    --primary: 195 61% 22%; /* #1C5A70 */
+    --primary-foreground: 58 9% 87%;
+    --secondary: 158 21% 63%; /* #88B7B5 */
     --secondary-foreground: 195 61% 22%;
-    --accent: 149 13% 57%;
+    --accent: 95 32% 71%; /* #A7CAB1 */
     --accent-foreground: 195 61% 22%;
-    --muted: 149 13% 57%;
+    --muted: 46 71% 92%; /* #F4ECD6 */
     --muted-foreground: 195 61% 22%;
-    --border: 149 13% 57%;
-    --input: 149 13% 57%;
+    --border: 158 21% 63%;
+    --input: 58 9% 87%;
     --ring: 195 61% 22%;
   }
 
   .generation-boomer {
-    --background: 207 74% 91%;
-    --foreground: 200 17% 48%;
+    --background: 207 74% 91%; /* #CEE5F2 */
+    --foreground: 200 17% 48%; /* #637081 */
     --card: 207 74% 91%;
     --card-foreground: 200 17% 48%;
     --popover: 207 74% 91%;
     --popover-foreground: 200 17% 48%;
-    --primary: 205 41% 63%;
-    --primary-foreground: 207 74% 91%;
-    --secondary: 205 41% 63%;
-    --secondary-foreground: 200 17% 48%;
-    --accent: 205 41% 63%;
-    --accent-foreground: 200 17% 48%;
-    --muted: 205 41% 63%;
+    --primary: 213 39% 70%; /* #ACCBE1 */
+    --primary-foreground: 200 17% 48%;
+    --secondary: 205 41% 63%; /* #7C98B3 */
+    --secondary-foreground: 207 74% 91%;
+    --accent: 200 17% 48%; /* #637081 */
+    --accent-foreground: 207 74% 91%;
+    --muted: 207 74% 91%;
     --muted-foreground: 200 17% 48%;
-    --border: 205 41% 63%;
-    --input: 205 41% 63%;
+    --border: 213 39% 70%;
+    --input: 207 74% 91%;
     --ring: 205 41% 63%;
   }
 
   .generation-millennial {
-    --background: 210 6% 19%;
-    --foreground: 195 9% 93%;
+    --background: 210 6% 19%; /* #293132 */
+    --foreground: 195 9% 93%; /* Light text */
     --card: 210 6% 19%;
     --card-foreground: 195 9% 93%;
     --popover: 210 6% 19%;
     --popover-foreground: 195 9% 93%;
-    --primary: 46 91% 75%;
+    --primary: 46 91% 75%; /* #F3DE8A */
     --primary-foreground: 210 6% 19%;
-    --secondary: 181 50% 48%;
+    --secondary: 181 50% 48%; /* #50D8D7 */
     --secondary-foreground: 195 9% 93%;
-    --accent: 181 50% 48%;
+    --accent: 207 52% 48%; /* #547AA5 */
     --accent-foreground: 195 9% 93%;
     --muted: 46 91% 75%;
     --muted-foreground: 210 6% 19%;
-    --border: 46 91% 75%;
+    --border: 181 50% 48%;
     --input: 46 91% 75%;
     --ring: 46 91% 75%;
   }
@@ -192,5 +192,19 @@
     padding: 0 16px;
     color: hsl(var(--primary));
     font-size: 1rem;
+  }
+
+  .flashcard-transition {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .flashcard-enter {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .flashcard-enter-active {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
