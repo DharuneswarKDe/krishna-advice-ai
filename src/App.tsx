@@ -8,6 +8,7 @@ import { GenerationProvider } from "./context/GenerationContext";
 import Index from "./pages/Index";
 import Chat from "./pages/Chat";
 import About from "./pages/About";
+import GitaPage from "./pages/GitaPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/about" element={<About />} />
+            <Route path="/gita" element={<GitaPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

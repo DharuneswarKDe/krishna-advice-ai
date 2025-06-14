@@ -10,7 +10,7 @@ const Index = () => {
   const { generation } = useGeneration();
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${generation ? `generation-${generation}` : ''}`}>
       <Header />
       
       <main className="flex-1">
@@ -29,10 +29,10 @@ const Index = () => {
                "Begin Your Spiritual Journey"}
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              {generation === "boomer" ? "Ask Krishna AI about your life's deeper questions, purpose, and spiritual growth. Receive guidance based on timeless teachings." :
-               generation === "millennial" ? "Ask Krishna AI about finding balance, purpose in work, and authentic connections in your busy life." :
-               generation === "genz" ? "Ask Krishna AI about finding your truth, navigating relationships, and making sense of this chaotic world." :
-               "Ask Krishna AI about your life's challenges, purpose, relationships, work, and spiritual growth. Receive guidance based on the timeless teachings of the Bhagavad Gita."}
+              {generation === "boomer" ? "Ask Thattuvam AI about your life's deeper questions, purpose, and spiritual growth. Receive guidance based on timeless teachings." :
+               generation === "millennial" ? "Ask Thattuvam AI about finding balance, purpose in work, and authentic connections in your busy life." :
+               generation === "genz" ? "Ask Thattuvam AI about finding your truth, navigating relationships, and making sense of this chaotic world." :
+               "Ask Thattuvam AI about your life's challenges, purpose, relationships, work, and spiritual growth. Receive guidance based on the timeless teachings of the Bhagavad Gita."}
             </p>
           </div>
         </section>

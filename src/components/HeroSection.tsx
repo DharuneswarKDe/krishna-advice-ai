@@ -35,7 +35,7 @@ const HeroSection = () => {
       case "boomer": return "Seek Guidance";
       case "millennial": return "Find Balance";
       case "genz": return "Get Answers";
-      default: return "Ask Krishna";
+      default: return "Ask Thattuvam";
     }
   };
 
@@ -44,7 +44,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-            {getTitle()} {!generation && <span className="gradient-text">Krishna AI</span>}
+            {getTitle()} {!generation && <span className="gradient-text">Thattuvam AI</span>}
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-8">

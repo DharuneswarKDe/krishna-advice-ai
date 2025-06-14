@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MessageBubble from "./MessageBubble";
@@ -19,10 +18,10 @@ const ChatContainer = () => {
   
   // Welcome messages based on generation
   const welcomeMessages = {
-    boomer: "Namaste 🙏 I am Krishna AI, ready to share the timeless wisdom of the Bhagavad Gita. How may I guide you on your spiritual journey today?",
-    millennial: "Hey there 👋 I'm Krishna AI, here to help you find balance in the chaos. What's on your mind today?",
-    genz: "Sup ✨ I'm Krishna AI, bringing you ancient wisdom with modern vibes. What's bothering you rn?",
-    default: "Namaste 🙏 I am Krishna AI, ready to share wisdom from the Bhagavad Gita. How may I assist you on your path today?"
+    boomer: "Namaste 🙏 I am Thattuvam AI, ready to share the timeless wisdom of the Bhagavad Gita. How may I guide you on your spiritual journey today?",
+    millennial: "Hey there 👋 I'm Thattuvam AI, here to help you find balance in the chaos. What's on your mind today?",
+    genz: "Sup ✨ I'm Thattuvam AI, bringing you ancient wisdom with modern vibes. What's bothering you rn?",
+    default: "Namaste 🙏 I am Thattuvam AI, ready to share wisdom from the Bhagavad Gita. How may I assist you on your path today?"
   };
 
   // Initialize welcome message based on generation
@@ -75,7 +74,7 @@ const ChatContainer = () => {
     try {
       if (isBackendAvailable) {
         // Use the backend API
-        const response = await sendChatMessage(userMessage, generation);
+        const response = await sendChatMessage(userMessage, generation || "default");
         addMessage(response.content, "assistant");
       } else {
         // Fallback to local response generation
@@ -168,7 +167,7 @@ const ChatContainer = () => {
               {generation === "boomer" ? "Wisdom Awaits You" :
                generation === "millennial" ? "Find Your Balance" :
                generation === "genz" ? "Get Real Talk" :
-               "Welcome to Krishna AI"}
+               "Welcome to Thattuvam AI"}
             </h2>
             <p className="text-muted-foreground mb-6">
               {generation === "boomer" ? "Ask any question and receive timeless wisdom to guide your spiritual journey" :
