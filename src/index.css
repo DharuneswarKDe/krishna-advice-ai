@@ -7,69 +7,68 @@
 
 @layer base {
   :root {
-    --background: 214 20% 85%; /* #D5DCDE */
-    --foreground: 195 61% 22%; /* #1C5A70 */
+    /* GEN Z THEME COLORS */
+    --background: 214 20% 85%;           /* #D5DCDE */
+    --foreground: 195 61% 22%;           /* #1C5A70 */
 
-    --card: 214 20% 85%; /* #D5DCDE */
-    --card-foreground: 195 61% 22%; /* #1C5A70 */
+    --card: 214 20% 85%;                 /* #D5DCDE */
+    --card-foreground: 195 61% 22%;      /* #1C5A70 */
 
-    --popover: 214 20% 85%; /* #D5DCDE */
-    --popover-foreground: 195 61% 22%; /* #1C5A70 */
+    --popover: 214 20% 85%;              /* #D5DCDE */
+    --popover-foreground: 195 61% 22%;   /* #1C5A70 */
 
-    --primary: 195 61% 22%; /* #1C5A70 */
-    --primary-foreground: 214 20% 85%; /* #D5DCDE */
+    --primary: 195 61% 22%;              /* #1C5A70 */
+    --primary-foreground: 214 20% 85%;   /* #D5DCDE */
 
-    --secondary: 158 21% 63%; /* #88B7B5 */
+    --secondary: 158 21% 63%;            /* #88B7B5 */
     --secondary-foreground: 195 61% 22%; /* #1C5A70 */
 
-    --muted: 46 71% 92%; /* #F4ECD6 */
-    --muted-foreground: 195 61% 22%; /* #1C5A70 */
+    --muted: 46 71% 92%;                 /* #F4ECD6 */
+    --muted-foreground: 195 61% 22%;     /* #1C5A70 */
 
-    --accent: 95 32% 71%; /* #A7CAB1 */
-    --accent-foreground: 195 61% 22%; /* #1C5A70 */
+    --accent: 95 32% 71%;                /* #A7CAB1 */
+    --accent-foreground: 195 61% 22%;    /* #1C5A70 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 158 21% 63%; /* #88B7B5 */
-    --input: 214 20% 85%; /* #D5DCDE */
-    --ring: 195 61% 22%; /* #1C5A70 */
+    --border: 158 21% 63%;              /* #88B7B5 */
+    --input: 214 20% 85%;               /* #D5DCDE */
+    --ring: 195 61% 22%;                /* #1C5A70 */
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 195 61% 22%; /* #1C5A70 */
-    --foreground: 214 20% 85%; /* #D5DCDE */
+    --background: 195 61% 22%;           /* #1C5A70 */
+    --foreground: 214 20% 85%;           /* #D5DCDE */
 
-    --card: 195 61% 22%; /* #1C5A70 */
-    --card-foreground: 214 20% 85%; /* #D5DCDE */
+    --card: 195 61% 22%;                 /* #1C5A70 */
+    --card-foreground: 214 20% 85%;      /* #D5DCDE */
 
-    --popover: 195 61% 22%; /* #1C5A70 */
-    --popover-foreground: 214 20% 85%; /* #D5DCDE */
+    --popover: 195 61% 22%;              /* #1C5A70 */
+    --popover-foreground: 214 20% 85%;   /* #D5DCDE */
 
-    --primary: 214 20% 85%; /* #D5DCDE */
-    --primary-foreground: 195 61% 22%; /* #1C5A70 */
+    --primary: 214 20% 85%;              /* #D5DCDE */
+    --primary-foreground: 195 61% 22%;   /* #1C5A70 */
 
-    --secondary: 158 21% 63%; /* #88B7B5 */
+    --secondary: 158 21% 63%;            /* #88B7B5 */
     --secondary-foreground: 214 20% 85%; /* #D5DCDE */
 
-    --muted: 95 32% 71%; /* #A7CAB1 */
-    --muted-foreground: 214 20% 85%; /* #D5DCDE */
+    --muted: 95 32% 71%;                 /* #A7CAB1 */
+    --muted-foreground: 214 20% 85%;     /* #D5DCDE */
 
-    --accent: 46 71% 92%; /* #F4ECD6 */
-    --accent-foreground: 195 61% 22%; /* #1C5A70 */
+    --accent: 46 71% 92%;                /* #F4ECD6 */
+    --accent-foreground: 195 61% 22%;    /* #1C5A70 */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 158 21% 63%; /* #88B7B5 */
-    --input: 158 21% 63%; /* #88B7B5 */
-    --ring: 214 20% 85%; /* #D5DCDE */
+    --border: 158 21% 63%;              /* #88B7B5 */
+    --input: 158 21% 63%;               /* #88B7B5 */
+    --ring: 214 20% 85%;                /* #D5DCDE */
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -113,11 +112,12 @@
   .decorated-hr {
     position: relative;
     height: 1px;
-    background: linear-gradient(90deg, 
-      transparent, 
-      hsl(var(--primary)/30%), 
-      hsl(var(--primary)), 
-      hsl(var(--primary)/30%), 
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 30%),
+      hsl(var(--primary)),
+      hsl(var(--primary) / 30%),
       transparent
     );
   }
