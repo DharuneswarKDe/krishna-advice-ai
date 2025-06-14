@@ -25,16 +25,11 @@ const Chat = () => {
       
       <main className="flex-1 py-6 md:py-12 container max-w-4xl mx-auto px-4">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold">{getPageTitle()}</h1>
+        <Badge className="hidden md:block" variant="outline">
+          <h6 className="text-2m">{getPageTitle()}</h6>
+          </Badge>
           <div className="flex items-center gap-3">
             <GenerationDropdown />
-            {generation && (
-              <Badge variant="outline" className="bg-primary/10">
-                {generation === "boomer" ? "Boomer Bhaktas" :
-                generation === "millennial" ? "Hustle Hermits" :
-                "Woke Warriors"}
-              </Badge>
-            )}
           </div>
         </div>
         

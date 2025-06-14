@@ -9,7 +9,9 @@ gita = GitaEngine()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace "*" with ["http://localhost:3000"] in production
+    allow_origins=["http://localhost:8080"],  # or your frontend URL
+
+   # allow_origins=["*"],  # Replace "*" with ["http://localhost:3000"] in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
